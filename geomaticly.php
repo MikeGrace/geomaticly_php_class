@@ -43,9 +43,11 @@
 
       //RETURNS COUNTRY OBJ
       public function get_country($key, $ip){
+        global $geo_debug;
         $url="http://geomatic.ly/api/v1/geo/ip/?apikey=" . $this->apikey . "&ip=" . $ip;
         $country = $this->api_call($url);
         $obj = json_decode($country);
+        $geo_debug = $obj;
         return $obj;
       }
 
@@ -87,6 +89,18 @@
         curl_close($ch);
 
         return $output;
+      }
+
+      public function get_geo_debug($return_as_string=false) {
+        global $geo_debug;
+        if ( $return_as_string ) {
+          $string = array();
+          foreach( $geo_debug as $key => $val ) {
+            $string[] = "$key:\t\t$val\n";
+          }
+          $geo_debug = implode('', $string);
+        }
+        return $geo_debug;
       }
 
   }

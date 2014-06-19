@@ -16,6 +16,11 @@ Try it out.
 
     echo $block["SOME BLOCK METHOD"];
 
+Output geo debug information.
+
+    <!--
+    <?php echo $geomaticly->get_geo_debug(true); ?>
+    -->
 
 ## Contributing
 1. Fork it
