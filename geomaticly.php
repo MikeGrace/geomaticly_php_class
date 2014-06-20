@@ -61,8 +61,8 @@
       //RETURNS PROD CONTENT FROM STORAGE
       public function prod_content($key, $ip, $language){
         $country_response = $this->get_country($key, $ip);
-        $country = strtolower($country_response->{country_code3});
-        $response = file_get_contents($this->bucket ."/". $this->apikey ."/". $key ."/". $country ."/". $language .".json");
+        $country = strtolower($country_response->country_code3);
+        $response = @file_get_contents($this->bucket ."/". $this->apikey ."/". $key ."/". $country ."/". $language .".json");
         if($response == ""){
           //LOAD DEFAULT
           $response = file_get_contents($this->bucket ."/". $this->apikey ."/". $key ."/default/default.json");
