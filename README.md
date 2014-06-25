@@ -1,8 +1,12 @@
 # Geomatic.ly PHP Class
 
-A php class to load your geomatic content. Visit geomatic.ly for documentation.
+A php class to load your geomatic content. Visit geomatic.ly/docs/php for documentation.
 
 ## Usage
+
+Set the config vars
+
+    public $apikey = 'YOUR SITE KEY';//api key for your site
 
 Load the class.
 
@@ -10,7 +14,7 @@ Load the class.
 
 Load all the content blocks for this page.
     
-    $block = $geomaticly->page("[YOUR PAGE KEY]");
+    $block = $geomaticly->page("YOUR PAGE KEY");
 
 Try it out.
 
