@@ -16,7 +16,7 @@
   {
       //CONFIG VARS
       public $mode = "production";
-      public $apikey = '';//api key for your user account
+      public $apikey = '';//api key for your site
       public $bucket = "http://cdn.geomatic.ly/publish";
 
       //CALLED FROM PAGE TO LOAD PAGE CONTENT
