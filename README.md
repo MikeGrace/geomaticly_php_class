@@ -6,15 +6,15 @@ A php class to load your geomatic content. Visit geomatic.ly/docs/php for docume
 
 Set the config vars
 
-    public $apikey = 'YOUR SITE KEY';//api key for your site
+    public $apikey = 'YOUR PROJECT KEY';//api key for your project
 
 Load the class.
 
     require('geomaticly.php');
 
-Load all the content blocks for this page.
+Load all the content blocks for this module.
     
-    $block = $geomaticly->page("YOUR PAGE KEY");
+    $block = $geomaticly->module("YOUR MODULE KEY");
 
 Try it out.
 
