@@ -3,12 +3,12 @@
    * Geomaticly (beta)
    * 
    * 
-   * @version    0.0.1
+   * @version    0.0.2
    * @copyright  2014 Geomaticly
    *
    * USAGE
    * require('geomaticly.php');
-   * $block = $geomaticly->page("[YOUR PAGE KEY]");
+   * $block = $geomaticly->module("[YOUR MODULE KEY]");
    * echo $block["SOME BLOCK METHOD"];
    */
 
@@ -19,7 +19,31 @@
       public $apikey = '';//api key for your site
       public $bucket = "http://cdn.geomatic.ly/publish";
 
-      //CALLED FROM PAGE TO LOAD PAGE CONTENT
+      //CALLED TO LOAD MODULE CONTENT
+      public function module($key){
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+        switch($this->mode){
+          case "production":
+            $response = $this->prod_content($key, $ip, $language);
+            $obj = json_decode($response);
+            break;
+          case "development":
+            $response = $this->dev_content($key, $ip, $language);
+            $obj = json_decode($response);
+            break;
+        }
+
+        $data = [];
+        foreach($obj as $item){
+          $data[$item->method] = $item->body;
+        }
+        return $data;
+      }
+
+      //***** DEPRICATED *****
+      // The page function has been depricated and has 
+      // been replaced with the module function
       public function page($key){
         $ip = $_SERVER['REMOTE_ADDR'];
         $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -52,7 +76,7 @@
 
       //RETURNS DEV CONTENT FROM API
       public function dev_content($key, $ip, $language){
-        $url="http://geomatic.ly/api/v1/pages/" . $key . "?apikey=" . $this->apikey . "&lang=" . $language . "&ip=" . $ip;
+        $url="http://geomatic.ly/api/v1/modules/" . $key . "?apikey=" . $this->apikey . "&lang=" . $language . "&ip=" . $ip;
         $result = $this->curl($url);
         return $result; 
       }
