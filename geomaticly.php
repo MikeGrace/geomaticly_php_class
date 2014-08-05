@@ -3,7 +3,7 @@
    * Geomaticly (beta)
    * 
    * 
-   * @version    0.0.3
+   * @version    0.0.5
    * @copyright  2014 Geomaticly
    *
    * USAGE
@@ -17,7 +17,7 @@
       //CONFIG VARS
       public $mode = "production";
       public $apikey = '';//api key for your site
-      public $bucket = "http://cdn.geomatic.ly/publish";
+      public $bucket = "https://cdn.geomatic.ly/publish";
 
       //CALLED TO LOAD MODULE CONTENT
       public function module($key){
