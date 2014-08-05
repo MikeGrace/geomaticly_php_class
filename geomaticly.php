@@ -3,7 +3,7 @@
    * Geomaticly (beta)
    * 
    * 
-   * @version    0.0.2
+   * @version    0.0.3
    * @copyright  2014 Geomaticly
    *
    * USAGE
@@ -67,7 +67,7 @@
 
       //RETURNS COUNTRY OBJ
       public function get_country($key, $ip){
-        $url="http://geomatic.ly/api/v1/geo/ip/?apikey=" . $this->apikey . "&ip=" . $ip;
+        $url="https://geomatic.ly/api/v1/geo/ip/?apikey=" . $this->apikey . "&ip=" . $ip;
         $country = $this->api_call($url);
         $obj = json_decode($country);
         return $obj;
@@ -76,7 +76,7 @@
 
       //RETURNS DEV CONTENT FROM API
       public function dev_content($key, $ip, $language){
-        $url="http://geomatic.ly/api/v1/modules/" . $key . "?apikey=" . $this->apikey . "&lang=" . $language . "&ip=" . $ip;
+        $url="https://geomatic.ly/api/v1/modules/" . $key . "?apikey=" . $this->apikey . "&lang=" . $language . "&ip=" . $ip;
         $result = $this->curl($url);
         return $result; 
       }
