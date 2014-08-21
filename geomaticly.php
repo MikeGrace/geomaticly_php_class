@@ -21,7 +21,7 @@
 
       //CALLED TO LOAD MODULE CONTENT
       public function module($key){
-        $ip = $_SERVER['REMOTE_ADDR'];
+        $ip = $this->get_user_ip();
         $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
         switch($this->mode){
           case "production":
@@ -111,6 +111,18 @@
         curl_close($ch);
 
         return $output;
+      }
+
+      public function get_user_ip() {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+          $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+          $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+          $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
+        return $ip;
       }
 
   }
